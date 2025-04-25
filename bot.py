@@ -12,10 +12,10 @@ if not API_TOKEN or not CHAT_ID:
 URL = f'https://api.telegram.org/bot{API_TOKEN}/sendMessage'
 
 # Get the current hour in 24-hour format
-current_hour = datetime.now().hour
+current_hour = datetime.now().strftime('%I')
 
 # The message to send
-message = "Bong " * current_hour
+message = "BONG " * current_hour
 
 # Send the message to the Telegram chat
 payload = {
