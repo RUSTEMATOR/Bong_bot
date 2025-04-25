@@ -1,9 +1,8 @@
 name: Send Bong Hourly
-
 on:
   schedule:
-    - cron: '*/5 * * * *'
-
+    - cron: '0/5 * * * *'  # This runs at the beginning of every hour
+    # Alternatively use '*/5 * * * *' to run every 5 minutes
   workflow_dispatch:
     inputs:
       deployment_target:
@@ -12,28 +11,22 @@ on:
         type: choice
         options:
           - Run tests
-
 jobs:
   send_bong:
     runs-on: ubuntu-latest
-
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
-
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
         python-version: '3.x'
-
     - name: Install dependencies
       run: |
         pip install requests
-
     - name: Install pytz
       run: |
         pip install pytz
-
     - name: Run the send_bong.py script
       run: |
         python bot.py
