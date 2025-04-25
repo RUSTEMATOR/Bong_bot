@@ -1,0 +1,31 @@
+name: Send Bong Hourly
+
+on:
+  schedule:
+    - cron: '0 * * * *'  # Runs every hour at the top of the hour
+  workflow_dispatch:  # Allows manual triggering of the workflow
+
+
+jobs:
+  send_bong:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+
+    - name: Install dependencies
+      run: |
+        pip install requests
+
+    - name: Run the send_bong.py script
+      run: |
+        python send_bong.py
+      env:
+        TELEGRAM_API_TOKEN: ${{ secrets.TELEGRAM_API_TOKEN }}
+        TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
