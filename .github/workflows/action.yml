@@ -1,7 +1,7 @@
 name: Send Bong Hourly
 on:
   schedule:
-    - cron: '0/5 * * * *'  # This runs at the beginning of every hour
+    - cron: '*/5 * * * *'  # This runs at the beginning of every hour
     # Alternatively use '*/5 * * * *' to run every 5 minutes
   workflow_dispatch:
     inputs:
