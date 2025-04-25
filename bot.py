@@ -1,5 +1,6 @@
 import requests
 import os
+import pytz
 from datetime import datetime
 
 API_TOKEN = os.getenv('TELEGRAM_API_TOKEN')
@@ -11,9 +12,12 @@ if not API_TOKEN or not CHAT_ID:
 
 URL = f'https://api.telegram.org/bot{API_TOKEN}/sendMessage'
 
-# Get the current hour in 24-hour format
-current_hour = datetime.now().strftime('%I')
-current_hour = int(current_hour)
+timezone = pytz.timezone('Etc/GMT-3')  # GMT+3 is represented as GMT-3 in pytz
+current_time = datetime.now(timezone)
+
+# Get the current hour in 12-hour format
+current_hour = current_time.strftime('%I')  # %I gives 12-hour format without leading zero
+current_hour = int(current_hour)  # Convert to integer to use in message construction
 
 # The message to send
 message = "BONG " * current_hour
