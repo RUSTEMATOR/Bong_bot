@@ -13,6 +13,7 @@ URL = f'https://api.telegram.org/bot{API_TOKEN}/sendMessage'
 
 # Get the current hour in 24-hour format
 current_hour = datetime.now().strftime('%I')
+current_hour = int(current_hour)
 
 # The message to send
 message = "BONG " * current_hour
