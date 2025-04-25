@@ -2,7 +2,7 @@ name: Send Bong Hourly
 
 on:
   schedule:
-    - cron: '0 * * * *'  # Runs every hour at the top of the hour
+    - cron: '*/5 * * * *'  # Runs every 5 minutes for testing
   workflow_dispatch:  # Allows manual triggering of the workflow
 
 
@@ -22,6 +22,10 @@ jobs:
     - name: Install dependencies
       run: |
         pip install requests
+
+    - name: Install pytz
+      run: |
+        pip install pytz
 
     - name: Run the send_bong.py script
       run: |
